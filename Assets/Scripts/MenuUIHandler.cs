@@ -12,7 +12,7 @@ public class MenuUIHandler : MonoBehaviour
     {
         DataManager._instance._username = _registeredUsername.text;
 
-        if (DataManager._instance._username != null && DataManager._instance._bestScorePoints != 0)
+        if (DataManager._instance._bestScoreUsername != null && DataManager._instance._bestScorePoints != 0)
         {
             _bestScoreText.text = $"{DataManager._instance._bestScoreUsername} - {DataManager._instance._bestScorePoints}";
         }
@@ -26,8 +26,10 @@ public class MenuUIHandler : MonoBehaviour
     public void Exit()
     {
 #if UNITY_EDITOR
+        DataManager._instance.SaveData();
         EditorApplication.ExitPlaymode();
 #else
+        DataManager._instance.SaveData();
         Application.Quit();
 #endif
     }
